@@ -1,5 +1,0 @@
-api_key = 'ioATjGlRuGBpkIg5mrJ8xBVww'
-api_key_secret = 'StCyqyOvrlhZ619lT3VbW8NcPbgXshGxvZqTwgRq7QUDhR9QUk'
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAAFcXaQEAAAAA6ayyyy0RQDS%2FrlZRvaYhF59YUzo%3Dn1XKcTY0J7iAU93CrRX2mGv2COSkGIRcqYZXcY1MCLHspYMVKq'
-access_token = '924841088761974785-ZHz1fDy46D9NrAr7mXqXUmDPeP3KR3l'
-access_token_secret = 'VOE5fi28pQZuMysR2rroEUQ7SdHlS9WNr8ybpgvtvsh5l'
