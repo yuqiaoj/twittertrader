@@ -52,7 +52,7 @@ def main():
 
         output_list.append({"name": stock[1], 
                             "ticker": stock[0], 
-                            "tweetid": top_tweet, 
+                            "tweetid": str(top_tweet), 
                             "tot_pos": total_pos,
                             "per_pos": 100 * total_pos/total_count, 
                             "tot_neg": total_neg,
