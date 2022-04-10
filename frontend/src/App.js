@@ -4,7 +4,7 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {Deploy} from './Components/Deploy/Deploy';
+import {tickerRequests} from './Components/TickerRequests';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
@@ -12,6 +12,7 @@ function App() {
 
   const [data, setData] = useState([{}])
 
+  //get the top cards
   useEffect(() => {
     fetch('/members').then(response =>{
       if(response.ok){
@@ -24,12 +25,21 @@ function App() {
     ).then(error => console.log(error))
   }, [])
 
+  // //post and get inputed tickers
+  // const [tickerInput, setTickerInput] = useState('')
+  // const options = {
+  //   method: 'POST',
+  //   body: JSON.stringify({ ticker: tickerInput })
+  // }
+  // fetch('/receive', options)
+  const [tickerIn, setTickerIn] = useState([]);
+
+
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
 
   return (
     <>
-      <Deploy/>
       <AppBar position="static">
         <Toolbar>
           <Grid container justifyContent="space-between" alignItems="center">
@@ -42,7 +52,15 @@ function App() {
           </Grid>
         </Toolbar>
       </AppBar>
-
+      <Box sx={{ padding: '30px', width: '100%' }}> 
+      twittertrader is a react application that displays crucial 
+      financial information regarding the day's top traded stocks. For each of the top 
+      ten most active stocks, our project analyzes the most recent 
+      relevant tweets and displays the general public opinion along 
+      with the most influential tweet.
+      </Box>
+      <tickerRequests tickerIn={tickerIn}/>
+      
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
         {data.map((item, i) => (
           <Box key={i} sx={{
@@ -56,11 +74,11 @@ function App() {
                   <Typography variant="subtitle1" gutterBottom>{item.ticker}</Typography>
                   <Box display="flex" alignItems="center">
                     Positive
-                    <Pie value={item.positive} color="#388e3c" />
+                    <Pie value={item.per_pos} color="#388e3c" />
                   </Box>
                   <Box display="flex" alignItems="center">
                     Negative
-                    <Pie value={item.negative} color="#d32f2f"/>
+                    <Pie value={item.per_neg} color="#d32f2f"/>
                   </Box>
                 </Box>
                 <Box width="60%" maxHeight="300px" overflow="auto">
@@ -175,7 +193,6 @@ export default function ToggleColorMode() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <App />
-          <Deploy/>
         </CssBaseline>
       </ThemeProvider>
     </ColorModeContext.Provider>
