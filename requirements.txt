@@ -1,0 +1,7 @@
+here are all the libraries that need to be installed
+
+tweepy
+yahoo_fin
+NLTK
+flask 
+yfinance
